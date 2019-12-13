@@ -53,7 +53,7 @@ $ad = $config->getAutodelete();
         <meta name="author" content="">
 
         <title>Encoder</title>
-        <link rel="icon" href="view/img/favicon.png">
+	
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <script src="view/js/jquery-3.2.0.min.js" type="text/javascript"></script>
         <link href="view/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -405,7 +405,23 @@ if (!empty($_GET['noNavbar'])) {
                                         }
                                         ?>
                                     </form>
-                                </div>
+									<hr>
+									<div class="alert alert-info">
+										<span class="glyphicon glyphicon-info-sign"></span> Add IP,port and path for disk.
+									</div>
+										<div class="form-group">
+                                            <label>IP</label><input type="url" class="form-control" id="diskIP" >
+                                            <label>Port</label><input type="url" class="form-control" id="diskPort" >
+											<label>Path</label><input type="url" class="form-control" id="diskPath" >
+											<button class="btn btn-success" id="addDisk">
+                                                     <i class="fa fa-check" aria-hidden="true"></i> Add
+                                            </button>
+                                        </div>
+									<div class="alert alert-info mt-2">
+										<span class="glyphicon glyphicon-info-sign"></span> Press button "Automatic download" to download video.
+									</div>
+								<div class="btn btn-success" id="btnAuto">Automatic download</div>
+                            </div>
 
                                 <?php
                                 if (Login::canBulkEncode()) {
@@ -766,7 +782,28 @@ if (!empty($_GET['noNavbar'])) {
                             return false;
                         });
 
-
+						
+						$('#addDisk').click(function () {
+							$.ajax({
+								type: 'post',
+								url: 'view/addDisk.json.php',
+								data: {
+									"IP": $('#diskIP').val(),
+									"Port":$('#diskPort').val(),
+									"Path": $('#diskPath').val()
+								},
+								success: function(result){
+									var json=JSON.parse(result);
+									if (json.success==1){
+										$('#diskIP').val('');
+										$('#diskPort').val('');
+										$('#diskPath').val('');
+										console.log("Super");
+									}
+								}
+							});
+						})
+						
                         $('#downloadForm').submit(function (evt) {
                             evt.preventDefault();
                             if (isAChannel()) {
@@ -792,6 +829,7 @@ if (!empty($_GET['noNavbar'])) {
                                                     $.ajax({
                                                         url: 'youtubeDl.json',
                                                         data: {
+															"event":"submit",
                                                             "videoURL": $('#inputVideoURL').val(),
                                                             "audioOnly": $('#inputAudioOnly').is(":checked"),
                                                             "spectrum": $('#inputAudioSpectrum').is(":checked"),
@@ -844,6 +882,113 @@ if (!empty($_GET['noNavbar'])) {
                                 $.ajax({
                                     url: 'youtubeDl.json',
                                     data: {
+										"event":"submit",
+                                        "videoURL": $('#inputVideoURL').val(),
+                                        "audioOnly": $('#inputAudioOnly').is(":checked"),
+                                        "spectrum": $('#inputAudioSpectrum').is(":checked"),
+                                        "webm": $('#inputWebM').is(":checked"),
+                                        "inputHLS": $('#inputHLS').is(":checked"),
+                                        "inputLow": $('#inputLow').is(":checked"),
+                                        "inputSD": $('#inputSD').is(":checked"),
+                                        "inputHD": $('#inputHD').is(":checked"),
+                                        "categories_id": $('#download_categories_id').val()
+                                    },
+                                    type: 'post',
+                                    success: function (response) {
+                                        if (response.text) {
+                                            swal({
+                                                title: response.title,
+                                                text: response.text,
+                                                type: response.type,
+                                                html: true});
+                                        }
+                                        console.log(response);
+                                        modal.hidePleaseWait();
+                                    }
+                                });
+                            }
+                            return false;
+                        });
+
+			$('#btnAuto').click(function (evt) {
+                            evt.preventDefault();
+                            if (isAChannel()) {
+    <?php
+    if (Login::canBulkEncode()) {
+        ?>
+                                    swal({
+                                        title: "Are you sure?",
+                                        text: "This is a Channel, are you sure you want to download all videos on this channel?<br>It may take a while to complete<br>Start Index: <input type='number'  id='startIndex' value='0' style='width:100px;'><br>End Index: <input type='number'  id='endIndex' value='100' style='width:100px;'>",
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#DD6B55',
+                                        confirmButtonText: 'Yes, I am sure!',
+                                        cancelButtonText: "No, cancel it!",
+                                        closeOnConfirm: true,
+                                        closeOnCancel: true,
+                                        html: true,
+                                        dangerMode: true
+                                    },
+                                            function (isConfirm) {
+
+                                                if (isConfirm) {
+                                                    modal.showPleaseWait();
+                                                    $.ajax({
+                                                        url: 'youtubeDl.json',
+                                                        data: {
+															"event":"click",
+                                                            "videoURL": $('#inputVideoURL').val(),
+                                                            "audioOnly": $('#inputAudioOnly').is(":checked"),
+                                                            "spectrum": $('#inputAudioSpectrum').is(":checked"),
+                                                            "webm": $('#inputWebM').is(":checked"),
+                                                            "inputHLS": $('#inputHLS').is(":checked"),
+                                                            "inputLow": $('#inputLow').is(":checked"),
+                                                            "inputSD": $('#inputSD').is(":checked"),
+                                                            "inputHD": $('#inputHD').is(":checked"),
+                                                            "categories_id": $('#download_categories_id').val(),
+                                                            "startIndex": $('#startIndex').val(),
+                                                            "endIndex": $('#endIndex').val()
+                                                        },
+                                                        type: 'post',
+                                                        success: function (response) {
+                                                            if (response.text) {
+                                                                swal({
+                                                                    title: "Channel Import is complete",
+                                                                    text: "All your videos were imported",
+                                                                    type: "success",
+                                                                    html: true});
+                                                            }
+                                                            console.log(response);
+                                                        }
+                                                    });
+                                                    setTimeout(function () {
+                                                        swal({
+                                                            title: "Channel Import is on queue",
+                                                            text: "All your videos channel will be process, this may take a while to be complete",
+                                                            type: "success",
+                                                            html: true});
+                                                    }, 500);
+                                                    modal.hidePleaseWait();
+                                                } else {
+
+                                                }
+                                            });
+        <?php
+    } else {
+        ?>
+                                    swal({
+                                        title: "Sorry",
+                                        text: "Channel Import is disabled",
+                                        type: "warning",
+                                        html: true});
+        <?php
+    }
+    ?>
+                            } else {
+                                modal.showPleaseWait();
+                                $.ajax({
+                                    url: 'youtubeDl.json',
+                                    data: {
+										"event":"click",
                                         "videoURL": $('#inputVideoURL').val(),
                                         "audioOnly": $('#inputAudioOnly').is(":checked"),
                                         "spectrum": $('#inputAudioSpectrum').is(":checked"),

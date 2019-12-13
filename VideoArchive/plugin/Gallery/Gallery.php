@@ -43,18 +43,16 @@ class Gallery extends PluginAbstract {
         $obj->GifOnBigVideo = true;
         $obj->Description = false;
         $obj->CategoryDescription = false;
-        
-        $obj->Trending = true;
+        $obj->Trending = false;
         $obj->TrendingCustomTitle = "";
         $obj->TrendingRowCount = 12;
-        
         $obj->DateAdded = true;
         $obj->DateAddedCustomTitle = "";
-        $obj->DateAddedRowCount = 12;
-        $obj->MostWatched = true;
+        $obj->DateAddedRowCount = 10;
+        $obj->MostWatched = false;
         $obj->MostWatchedCustomTitle = "";
         $obj->MostWatchedRowCount = 12;
-        $obj->MostPopular = true;
+        $obj->MostPopular = false;
         $obj->MostPopularCustomTitle = "";
         $obj->MostPopularRowCount = 12;
         $obj->SortByName = false;
@@ -64,7 +62,7 @@ class Gallery extends PluginAbstract {
         $obj->SubscribedChannelsRowCount = 12;
         $obj->Categories = true;
         $obj->CategoriesCustomTitle = "";
-        $obj->CategoriesRowCount = 12;
+        $obj->CategoriesRowCount = 10;
         $obj->sortReverseable = false;
         $obj->SubCategorys = false;
         $obj->showTags = true;

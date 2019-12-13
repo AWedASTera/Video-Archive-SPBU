@@ -31,8 +31,8 @@ function addVideo($link, $streamers_id, $title = "") {
         $obj->error = "youtube-dl --force-ipv4 get title ERROR** " . print_r($link, true);
         $obj->type = "warning";
         $obj->title = "Sorry!";
-        $obj->text = sprintf("We could not get the title of your video (%s) go to %s to fix it", $link, "<a href='https://github.com/DanielnetoDotCom/YouPHPTube/wiki/youtube-dl-failed-to-extract-signature' class='btn btn-xm btn-default'>Update your Youtube-DL</a>");
-        error_log("youtubeDl::addVideo We could not get the title ($title) of your video ($link)");
+        $obj->text = sprintf("We could not get the title of your video %s go to %s to fix it", $link, "<a href='https://github.com/WWBN/AVideo/wiki/youtube-dl-failed-to-extract-signature' class=''>Update your Youtube-DL</a>");
+        error_log("youtubeDl::addVideo We could not get the title $title of your video $link");
     } else {
         $obj->type = "success";
         $obj->title = "Congratulations!";
@@ -51,7 +51,7 @@ function addVideo($link, $streamers_id, $title = "") {
         $e->setFilename($filename);
         $e->setStatus('queue');
         $e->setPriority($s->getPriority());
-        //$e->setNotifyURL($global['YouPHPTubeURL'] . "youPHPTubeEncoder.json");
+        //$e->setNotifyURL($global['AVideoURL'] . "aVideoEncoder.json");
 
         $encoders_ids = array();
 
@@ -84,37 +84,110 @@ if (!Login::canUpload()) {
     if (!($streamers_id = Login::getStreamerId())) {
         $obj->msg = "There is no streamer site";
     } else {
-        // if it is a channel
-        $rexexp = "/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/(channel|user).+/";
-        if (preg_match($rexexp, $_POST['videoURL'])) {
-            if (!Login::canBulkEncode()){
-                $obj->msg = "Channel Import is disabled";
-                die(json_encode($obj));
-            }
-            $start = 0;
-            $end = 100;
-            if(!empty($_POST['startIndex'])){
-                $start = $current = intval($_POST['startIndex']);                
-            }
-            if(!empty($_POST['endIndex'])){
-                $end = intval($_POST['endIndex']);
-            }            
-            error_log("Processing Channel {$start} to {$end}");
-            $list = Encoder::getReverseVideosJsonListFromLink($_POST['videoURL']);
-            $i=$start;
-            for(; $i<=$end;$i++){
-                if(is_object($list[$i]) && empty($list[$i]->id)){
-                    error_log(($i)." Not Object ".  print_r($list[$i], true));
-                    continue;
-                }
-                error_log(($i)." Process Video {$list[$i]->id}");
-                $url = "https://www.youtube.com/watch?v={$list[$i]->url}";
-                $obj = addVideo($url, $streamers_id, $list[$i]->title);
-            }
-            error_log("Process Done Total {$i}");
-        } else {
-            $obj = addVideo($_POST['videoURL'], $streamers_id);
-        }
+		if ($_POST['event']=="submit") {
+			// if it is a channel
+			$rexexp = "/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/(channel|user).+/";
+			if (preg_match($rexexp, $_POST['videoURL'])) {
+				if (!Login::canBulkEncode()){
+					$obj->msg = "Channel Import is disabled";
+					die(json_encode($obj));
+				}
+				$start = 0;
+				$end = 100;
+				if(!empty($_POST['startIndex'])){
+					$start = $current = intval($_POST['startIndex']);                
+				}
+				if(!empty($_POST['endIndex'])){
+					$end = intval($_POST['endIndex']);
+				}            
+				error_log("Processing Channel {$start} to {$end}");
+				$list = Encoder::getReverseVideosJsonListFromLink($_POST['videoURL']);
+				$i=$start;
+				for(; $i<=$end;$i++){
+					if(is_object($list[$i]) && empty($list[$i]->id)){
+						error_log(($i)." Not Object ".  print_r($list[$i], true));
+						continue;
+					}
+					error_log(($i)." Process Video {$list[$i]->id}");
+					$url = "https://www.youtube.com/watch?v={$list[$i]->url}";
+					$obj = addVideo($url, $streamers_id, $list[$i]->title);
+				}
+				error_log("Process Done Total {$i}");
+			} else {
+				$obj = addVideo($_POST['videoURL'], $streamers_id);
+			}
+		} else {
+			$link=mysqli_connect($mysqlHost,$mysqlUser,$mysqlPass,$mysqlDatabase) or die($obj=addVideo("",$streamers_id));
+			$queue="select ip,port,path,id_disk from disks";
+			$result_disks=mysqli_query($link,$queue) or die($obj=addVideo("",$streamers_id));
+			for ($i=0;$i<mysqli_num_rows($result_disks);++$i){
+				$row_disks=mysqli_fetch_row($result_disks);
+				$ftp=ftp_connect($row_disks[0], 21);
+				if (!$ftp) {
+					$obj = addVideo("", $streamers_id);
+				} 
+				else{
+					$username="ftpuser";
+					$passwd="user";
+					
+					$login=ftp_login($ftp,$username,$passwd);
+					if (!$login) {
+						$obj = addVideo("", $streamers_id);
+					}
+					else{
+						ftp_chdir($ftp, $row_disks[2]);
+						$videos=ftp_nlist($ftp,".");
+						
+						$queue="select videos_from_disks.name from videos_from_disks,disks where disks.id_disk=videos_from_disks.id_disk and disks.ip='$row_disks[0]'";
+						$result_videos=mysqli_query($link,$queue) or die($obj=addVideo("",$streamers_id));
+						$count_videos=mysqli_num_rows($result_videos);
+						if ($count_videos==0)
+							foreach ($videos as $video){
+								$queue="insert into videos_from_disks (name,id_disk) values ('$video', '$row_disks[3]')";
+								$result_add=mysqli_query($link,$queue) or die($obj=addVideo("",$streamers_id));
+								$obj=addVideo("http://$row_disks[0]:$row_disks[1]/vod/$video", $streamers_id);
+							}
+							else{
+								$videos_mysql=[];
+								for ($j=0;$j<$count_videos;$j++){
+									$videos_row=mysqli_fetch_row($result_videos);
+									$videos_mysql[$j]=$videos_row[0];
+								}
+								foreach ($videos as $video)
+									if (!in_array($video, $videos_mysql)){
+										$queue="insert into videos_from_disks (name,id_disk) values ('$video', '$row_disks[3]')";
+										$result_add=mysqli_query($link,$queue) or die($obj=addVideo("",$streamers_id));
+										$obj=addVideo("http://$row_disks[0]:$row_disks[1]/vod/$video", $streamers_id);
+									}
+							}
+					}
+				}
+			}
+			//$obj=addVideo("1",$streamers_id);
+			/*$ftp=ftp_connect("134.209.206.185", 21);
+			if (!$ftp)
+			{
+				$obj = addVideo("", $streamers_id);
+			}
+			$username="ftpuser";
+			$passwd="user";
+			$login=ftp_login($ftp,$username,$passwd);
+			if (!$login)
+			{
+				$obj = addVideo("", $streamers_id);
+			}
+			ftp_chdir($ftp, "/var/www/video");
+			$videos=ftp_nlist($ftp,".");*/
+			
+			/*foreach ($videos as $video)
+			{
+				$obj = addVideo("http://134.209.206.185:8081/vod/$video", $streamers_id);
+			}*/
+			/*$v="http://134.209.206.185:8081/vod/sampleFLV.flv";//$_POST['videoURL']
+			$obj = addVideo($v, $streamers_id);
+			/*$v="http://134.209.206.185:8081/vod/sample.mp4";//$_POST['videoURL']
+			$obj = addVideo($v, $streamers_id);*/
+		}
     }
 }
 die(json_encode($obj));

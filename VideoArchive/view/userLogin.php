@@ -78,7 +78,6 @@
                 }
             }
             ?>
-            <hr>
             <?php
             $login = YouPHPTubePlugin::getLogin();
             foreach ($login as $value) {
@@ -93,7 +92,6 @@
                 }
             }
             ?>
-            <hr>
         </fieldset>
         <?php
 
