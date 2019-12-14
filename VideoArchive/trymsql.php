@@ -1,5 +1,5 @@
 <?php
-$mysqlHost = 'localhost';
+/*$mysqlHost = 'localhost';
 $mysqlUser = 'root';
 $mysqlPass = 'rootdb';
 $mysqlDatabase = 'videoArchiveEncoder';
@@ -42,4 +42,41 @@ for ($i=0;$i<mysqli_num_rows($result_disks);++$i){
 			}
 	}
 }
+$queue="select ip from disks";
+$result=mysqli_query($link,$queue);
+$arr=array();
+for ($i=0;$i<mysqli_num_rows($result);$i++)
+{
+	$arr[$i]=mysqli_fetch_row($result)[0];
+	echo "$arr[$i]";
+}*/
+?>
+<?php
+$mysqlHost = 'localhost';
+$mysqlUser = 'root';
+$mysqlPass = 'rootdb';
+$mysqlDatabase = 'videoArchiveEncoder';
+//if (isset($_POST['IP']) && isset($_POST['Port']) && isset($_POST['Path'])){
+//if (!empty($_POST['IP']) && !empty($_POST['Port']) && !empty($_POST['Path'])){
+	$ip="1";
+	$port="1";
+	$path="1";
+	$link=mysqli_connect($mysqlHost,$mysqlUser,$mysqlPass,$mysqlDatabase) or die("Error" . mysqli_error());
+	$queue="insert into disks (ip,port,path) values('$ip','$port','$path')";
+	$result=mysqli_query($link,$queue);
+	$arr=array();
+	if (!$result)
+	{
+		$arr["success"]= 0;
+		echo "not cool";
+	}else
+	{
+		$arr["success"]= 1;
+		$arr["ip"]="$ip";
+		//echo json_encode($arr);
+		echo "cool";
+	}
+/*}
+else
+	echo json_encode(array("success" => 0));*/
 ?>

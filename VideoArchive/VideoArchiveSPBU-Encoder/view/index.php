@@ -417,6 +417,24 @@ if (!empty($_GET['noNavbar'])) {
                                                      <i class="fa fa-check" aria-hidden="true"></i> Add
                                             </button>
                                         </div>
+                                    <div class="container" id="listDisks">
+										<div class="row">
+											<h4>Added disks</h4>
+										</div>
+											<?php
+											require_once __DIR__ . '/../videos/configuration.php';
+											$link=mysqli_connect($mysqlHost,$mysqlUser,$mysqlPass,$mysqlDatabase);
+											$queue="select ip from disks";
+											$result=mysqli_query($link,$queue);
+											for ($i=0;$i<mysqli_num_rows($result);$i++)
+											{
+												$arr=mysqli_fetch_row($result)[0];
+												echo "<div class=\"row\">
+														$arr
+														</div>";
+											}
+											?>					
+                                    </div> 
 									<div class="alert alert-info mt-2">
 										<span class="glyphicon glyphicon-info-sign"></span> Press button "Automatic download" to download video.
 									</div>
@@ -782,27 +800,27 @@ if (!empty($_GET['noNavbar'])) {
                             return false;
                         });
 
-						
 						$('#addDisk').click(function () {
 							$.ajax({
-								type: 'post',
 								url: 'view/addDisk.json.php',
 								data: {
 									"IP": $('#diskIP').val(),
 									"Port":$('#diskPort').val(),
 									"Path": $('#diskPath').val()
 								},
+								type: 'post',
 								success: function(result){
 									var json=JSON.parse(result);
 									if (json.success==1){
 										$('#diskIP').val('');
 										$('#diskPort').val('');
 										$('#diskPath').val('');
-										console.log("Super");
+										$('#listDisks').append(`<div class="row">${json.ip}</div>`);
+										alert(`<div class="row">${json.ip}</div>`);
 									}
 								}
 							});
-						})
+						});
 						
                         $('#downloadForm').submit(function (evt) {
                             evt.preventDefault();
