@@ -37,7 +37,7 @@
             <?php
         } else {
             ?>
-            <button class="btn btn-warning" id="verifyEmail"><i class="fa fa-envelope"></i> <?php echo __("Verify e-mail"); ?></button>
+            <button class="btn btn-warning" id="verifyEmail" style="background-color: white; color: #666666;"><i class="fa fa-envelope"></i> <?php echo __("Verify e-mail"); ?></button>
 
             <script>
                 $(document).ready(function () {
@@ -132,7 +132,7 @@ YouPHPTubePlugin::getMyAccount(User::getId());
     <div class="col-md-12 ">
         <div id="croppie"></div>
         <center>
-            <a id="upload-btn" class="btn btn-primary"><i class="fa fa-upload"></i> <?php echo __("Upload a Photo"); ?></a>
+            <a id="upload-btn" class="btn btn-primary" style="background-color: white; color: #666666;"><i class="fa fa-upload"></i> <?php echo __("Upload a Photo"); ?></a>
         </center>
     </div>
     <input type="file" id="upload" value="Choose a file" accept="image/*" style="display: none;" />
@@ -142,7 +142,7 @@ YouPHPTubePlugin::getMyAccount(User::getId());
     <div class="col-md-12 ">
         <div id="croppieBg"></div>
         <center>
-            <a id="upload-btnBg" class="btn btn-success"><i class="fa fa-upload"></i> <?php echo __("Upload a Background"); ?></a>
+            <a id="upload-btnBg" class="btn btn-success" style="background-color: white; color: #666666;"><i class="fa fa-upload"></i> <?php echo __("Upload a Background"); ?></a>
         </center>
     </div>
     <input type="file" id="uploadBg" value="Choose a file" accept="image/*" style="display: none;" />

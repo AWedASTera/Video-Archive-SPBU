@@ -29,7 +29,7 @@ if (!User::canUpload()) {
                 <textarea id="emailMessage" placeholder="<?php echo __("Enter text"); ?> ..." style="width: 100%;"></textarea>
             </div>
             <div class="col-lg-3">
-                <button type="button" class="btn btn-success" id="sendSubscribeBtn">
+                <button type="button" class="btn btn-success" id="sendSubscribeBtn" style="background-color: white; color: #666666;">
                     <i class="fas fa-envelope-square"></i> <?php echo __("Notify Subscribers"); ?>
                 </button>
             </div>

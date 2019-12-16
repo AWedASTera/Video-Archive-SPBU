@@ -283,7 +283,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                                 ?>
                                                 <li>
                                                     <a  href="<?php echo $global['webSiteRootURL']; ?>mvideos?upload=1" >
-                                                        <span class="fa fa-upload"></span> <?php echo empty($advancedCustom->uploadMP4ButtonLabel) ? __("Direct upload") : $advancedCustom->uploadMP4ButtonLabel; ?>
+                                                        <span class="fa fa-upload" ></span> <?php echo empty($advancedCustom->uploadMP4ButtonLabel) ? __("Direct upload") : $advancedCustom->uploadMP4ButtonLabel; ?>
                                                     </a>
                                                 </li>
                                                 <?php
@@ -529,7 +529,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                                 }
                                                 ?>
                                                 <li>
-                                                    <a href="<?php echo $global['webSiteRootURL']; ?>comments">
+                                                    <a href="<?php echo $global['webSiteRootURL']; ?>comments" >
                                                         <span class="fa fa-comment"></span>
                                                         <?php echo __("Comments"); ?>
                                                     </a>
@@ -577,7 +577,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                         <li>
 
                             <div>
-                                <a href="<?php echo $global['webSiteRootURL']; ?>" class="btn btn-primary btn-block  ">
+                                <a href="<?php echo $global['webSiteRootURL']; ?>" class="btn btn-primary btn-block  " style="background-color: white; color: #666666;">
                                     <span class="fa fa-home"></span>
                                     <?php echo __("Home"); ?>
                                 </a>
@@ -608,7 +608,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 <hr>
                             </li>
                             <li>
-                                <h2 class="text-danger"><?php echo __("My Menu"); ?></h2>
+                                <h2 class="text-danger" style="color: #666666"><?php echo __("My Menu"); ?></h2>
 
                                 <?php
                                 if (!$advancedCustomUser->disableSignOutButton) {
@@ -647,7 +647,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                             <li>
 
                                 <div>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>user" class="btn btn-primary btn-block" style="border-radius: 4px 4px 0 0;">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>user" class="btn btn-primary btn-block" style="border-radius: 4px 4px 0 0; color: #666666; background-color: white;">
                                         <span class="fa fa-user-circle"></span>
                                         <?php echo __("My Account"); ?>
                                     </a>
@@ -658,7 +658,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                             <li>
 
                                 <div>
-                                    <a href="<?php echo User::getChannelLink(); ?>" class="btn btn-danger btn-block" style="border-radius: 0;">
+                                    <a href="<?php echo User::getChannelLink(); ?>" class="btn btn-danger btn-block" style="border-radius: 0; color: #666666; background-color: white; ">
                                         <span class="fab fa-youtube"></span>
                                         <?php echo __($advancedCustomUser->MyChannelLabel); ?>
                                     </a>
@@ -671,7 +671,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 ?>
                                 <li>
                                     <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>mvideos" class="btn btn-success btn-block" style="border-radius: 0;">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>mvideos" class="btn btn-success btn-block" style="border-radius: 0; color: #666666; background-color: white;">
                                             <span class="glyphicon glyphicon-film"></span>
                                             <span class="glyphicon glyphicon-headphones"></span>
                                             <?php echo __("My videos"); ?>
@@ -687,7 +687,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 ?>
                                 <li>
                                     <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>charts" class="btn btn-info btn-block" style="border-radius: 0;">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>charts" class="btn btn-info btn-block" style="border-radius: 0; color: #666666; background-color: white;">
                                             <span class="fas fa-tachometer-alt"></span>
                                             <?php echo __("Dashboard"); ?>
                                         </a>
@@ -698,7 +698,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 ?>
                                 <li>
                                     <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>subscribes" class="btn btn-warning btn-block" style="border-radius: 0">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>subscribes" class="btn btn-warning btn-block" style="border-radius: 0; color: #666666; background-color: white;">
                                             <span class="fa fa-check"></span>
                                             <?php echo __("Subscriptions"); ?>
                                         </a>
@@ -710,7 +710,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
 
                                     <li>
                                         <div>
-                                            <a href="<?php echo $global['webSiteRootURL']; ?>categories" class="btn btn-info btn-block" style="border-radius: 0;">
+                                            <a href="<?php echo $global['webSiteRootURL']; ?>categories" class="btn btn-info btn-block" style="border-radius: 0; color: #666666; background-color: white;">
                                                 <span class="glyphicon glyphicon-list"></span>
                                                 <?php echo __($advancedCustom->CategoryLabel); ?>
                                             </a>
@@ -721,7 +721,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 ?>
                                 <li>
                                     <div>
-                                        <a href="<?php echo $global['webSiteRootURL']; ?>comments" class="btn btn-default btn-block" style="border-radius: 0 0 4px 4px;">
+                                        <a href="<?php echo $global['webSiteRootURL']; ?>comments" class="btn btn-default btn-block" style="border-radius: 0 0 4px 4px; color: #666666; background-color: white;">
                                             <span class="fa fa-comment"></span>
                                             <?php echo __("Comments"); ?>
                                         </a>
@@ -753,34 +753,34 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                             <hr>
                         </li>
                         <li>
-                            <h2 class="text-danger"><?php echo __("Admin Menu"); ?></h2>
+                            <h2 class="text-danger" style="color: #666666;" ><?php echo __("Admin Menu"); ?></h2>
                             <ul  class="nav navbar" style="margin-bottom: 10px;">
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>admin/">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>admin/" style="color: #666666;">
                                         <i class="fas fa-star"></i>
                                         <?php echo __("Admin Panel"); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>users">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>users" style="color: #666666;">
                                         <span class="glyphicon glyphicon-user"></span>
                                         <?php echo __("Users"); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>usersGroups">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>usersGroups" style="color: #666666;">
                                         <span class="fa fa-users"></span>
                                         <?php echo __("Users Groups"); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>categories">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>categories" style="color: #666666;">
                                         <span class="glyphicon glyphicon-list"></span>
                                         <?php echo __($advancedCustom->CategoryLabel); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>update">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>update" style="color: #666666;">
                                         <span class="glyphicon glyphicon-refresh"></span>
                                         <?php echo __("Update version"); ?>
                                         <?php
@@ -791,7 +791,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>siteConfigurations">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>siteConfigurations" style="color: #666666;">
                                         <span class="glyphicon glyphicon-cog"></span>
                                         <?php echo __("Site Configurations"); ?>
                                     </a>
@@ -805,18 +805,18 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 </li>
                                 -->
                                 <li>
-                                    <a href="<?php echo $global['webSiteRootURL']; ?>plugins">
+                                    <a href="<?php echo $global['webSiteRootURL']; ?>plugins" style="color: #666666;">
                                         <i class="fas fa-puzzle-piece"></i>
                                         <?php echo __("Plugins"); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="clearCacheButton">
+                                    <a href="#" class="clearCacheButton" style="color: #666666;">
                                         <i class="fa fa-trash"></i> <?php echo __("Clear Cache Directory"); ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="generateSiteMapButton">
+                                    <a href="#" class="generateSiteMapButton" style="color: #666666;">
                                         <i class="fa fa-sitemap"></i> <?php echo __("Generate Sitemap"); ?>
                                     </a>
                                 </li>
@@ -834,19 +834,19 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                             <hr>
                         </li>
                         <li class="nav-item <?php echo empty($_SESSION['type']) ? "active" : ""; ?>">
-                            <a class="nav-link " href="<?php echo $global['webSiteRootURL']; ?>?type=all">
+                            <a class="nav-link " style="color: #666666;" href="<?php echo $global['webSiteRootURL']; ?>?type=all">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <?php echo __("Audios and Videos"); ?>
                             </a>
                         </li>
                         <li class="nav-item <?php echo (!empty($_SESSION['type']) && $_SESSION['type'] == 'video' && empty($_GET['catName'])) ? "active" : ""; ?>">
-                            <a class="nav-link " href="<?php echo $global['webSiteRootURL']; ?>videoOnly">
+                            <a class="nav-link " style="color: #666666;" href="<?php echo $global['webSiteRootURL']; ?>videoOnly">
                                 <span class="glyphicon glyphicon-facetime-video"></span>
                                 <?php echo __("Videos"); ?>
                             </a>
                         </li>
                         <li class="nav-item <?php echo (!empty($_SESSION['type']) && $_SESSION['type'] == 'audio' && empty($_GET['catName'])) ? "active" : ""; ?>">
-                            <a class="nav-link" href="<?php echo $global['webSiteRootURL']; ?>audioOnly">
+                            <a class="nav-link" style="color: #666666;" href="<?php echo $global['webSiteRootURL']; ?>audioOnly">
                                 <span class="glyphicon glyphicon-headphones"></span>
                                 <?php echo __("Audios"); ?>
                             </a>
@@ -863,10 +863,10 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                             <hr>
                         </li>
                         <li>
-                            <h3 class="text-danger"><?php echo __("Channels"); ?></h3>
+                            <h3 class="text-danger" style="color: #666666;"><?php echo __("Channels"); ?></h3>
                         </li>
                         <li>
-                            <a href="<?php echo $global['webSiteRootURL']; ?>channels">
+                            <a href="<?php echo $global['webSiteRootURL']; ?>channels" style="color: #666666;">
                                 <i class="fa fa-search"></i>
                                 <?php echo __("Browse Channels"); ?>
                             </a>
@@ -880,7 +880,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                     </li>
                     <!-- categories -->
                     <li>
-                        <h3 class="text-danger"><?php echo __($advancedCustom->CategoryLabel); ?></h3>
+                        <h3 class="text-danger" style="color: #666666;"><?php echo __($advancedCustom->CategoryLabel); ?></h3>
                     </li>
                     <?php
                     if (!function_exists('mkSub')) {
@@ -917,7 +917,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                                 continue;
                             }
                             echo '<li class="' . ($value['clean_name'] == @$_GET['catName'] ? "active" : "") . '">'
-                            . '<a href="' . $global['webSiteRootURL'] . 'cat/' . $value['clean_name'] . '" >';
+                            . '<a style="color: #666666;" href="' . $global['webSiteRootURL'] . 'cat/' . $value['clean_name'] . '"  >';
                             echo '<span class="' . (empty($value['iconClass']) ? "fa fa-folder" : $value['iconClass']) . '"></span>  ' . $value['name']; 
                             if(empty($advancedCustom->hideCategoryVideosCount)){
                                echo ' <span class="badge">' . $total . '</span>'; 
@@ -941,7 +941,7 @@ if (((empty($advancedCustomUser->userMustBeLoggedIn) && empty($advancedCustom->d
                     if (empty($advancedCustom->disableHelpLeftMenu)) {
                         ?>
                         <li>
-                            <a href="<?php echo $global['webSiteRootURL']; ?>help">
+                            <a href="<?php echo $global['webSiteRootURL']; ?>help" style="color: #666666;">
                                 <span class="glyphicon glyphicon-question-sign"></span>
                                 <?php echo __("Help"); ?>
                             </a>

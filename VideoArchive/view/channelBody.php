@@ -62,7 +62,7 @@ $palyListsObj = YouPHPTubePlugin::getObjectDataIfEnabled('PlayLists');
             <?php
             if ($isMyChannel) {
                 ?>
-                <a href="<?php echo $global['webSiteRootURL']; ?>mvideos" class="btn btn-success ">
+                <a href="<?php echo $global['webSiteRootURL']; ?>mvideos" class="btn btn-success " style="background-color: white; color: #666666">
                     <span class="glyphicon glyphicon-film"></span>
                     <span class="glyphicon glyphicon-headphones"></span>
                     <?php echo __("My videos"); ?>

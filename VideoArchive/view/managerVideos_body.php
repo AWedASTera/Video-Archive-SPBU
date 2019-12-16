@@ -42,21 +42,21 @@
 
                 <div class="btn-group" style="width: 100%;" >
                     <?php if (User::isAdmin()) { ?>
-                        <a href="<?php echo $global['webSiteRootURL']; ?>usersGroups" class="btn  btn-sm btn-xs btn-warning">
+                        <a href="<?php echo $global['webSiteRootURL']; ?>usersGroups" class="btn  btn-sm btn-xs btn-warning" style="color: #666666; background-color: white;">
                             <span class="fa fa-users"></span> <?php echo __("User Groups"); ?>
                         </a>
-                        <a href="<?php echo $global['webSiteRootURL']; ?>users" class="btn btn-sm btn-xs btn-primary">
+                        <a href="<?php echo $global['webSiteRootURL']; ?>users" class="btn btn-sm btn-xs btn-primary" style="color: #666666; background-color: white;">
                             <span class="fa fa-user"></span> <?php echo __("Users"); ?>
                         </a>
                     <?php } ?>
-                    <a href="<?php echo $global['webSiteRootURL']; ?>charts" class="btn btn-sm btn-xs btn-info">
+                    <a href="<?php echo $global['webSiteRootURL']; ?>charts" class="btn btn-sm btn-xs btn-info" style="color: #666666; background-color: white;">
                         <span class="fa fa-bar-chart"></span>
                         <?php echo __("Video Chart"); ?>
                     </a>
                     <?php
                     if (User::isAdmin()) {
                         ?>
-                        <a href="<?php echo $global['webSiteRootURL']; ?>plugin/AD_Server/" class="btn btn-sm btn-xs btn-danger">
+                        <a href="<?php echo $global['webSiteRootURL']; ?>plugin/AD_Server/" class="btn btn-sm btn-xs btn-danger" style="color: #666666; background-color: white;">
                             <span class="far fa-money-bill-alt"></span> <?php echo __("Advertising Manager"); ?>
                         </a>
                         <?php
@@ -146,7 +146,7 @@
                     <i class="far fa-square" aria-hidden="true" id="chk"></i>
                 </button>
                 <?php if (!$config->getDisable_youtubeupload()) { ?>
-                    <button class="btn btn-danger" id="uploadYouTubeBtn">
+                    <button class="btn btn-danger" id="uploadYouTubeBtn" style="color: #666666; background-color: white;">
                         <i class="fab fa-youtube" aria-hidden="true"></i> <?php echo __('Upload to YouTube'); ?>
                     </button>
                     <?php
@@ -154,7 +154,7 @@
                 if (empty($advancedCustomUser->userCanNotChangeCategory) || User::isAdmin()) {
                     ?>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="color: #666666; background-color: white;">
                             <?php echo __('Categories'); ?> <span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
                             <?php
@@ -166,7 +166,7 @@
                     </div>
                 <?php } ?>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="color: #666666; background-color: white;">
                         <?php echo __('Status'); ?> <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#" onclick="changeStatus('a'); return false;"><i class="fas fa-eye"></i> <?php echo __('Active'); ?></a></li>
@@ -178,7 +178,7 @@
                     </ul>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="color: #666666; background-color: white;">
                         <?php echo __('Add User Group'); ?> <span class="caret"></span></button>                        
                     <ul class="dropdown-menu" role="menu">
                         <?php
@@ -197,7 +197,7 @@
                     </ul>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="color: #666666; background-color: white;">
                         <?php echo __('Remove User Group'); ?> <span class="caret"></span></button>                        
                     <ul class="dropdown-menu" role="menu">
                         <?php
@@ -215,7 +215,7 @@
                         ?>
                     </ul>
                 </div>
-                <button class="btn btn-danger" id="deleteBtn">
+                <button class="btn btn-danger" id="deleteBtn" style="color: #666666; background-color: white;">
                     <i class="fa fa-trash" aria-hidden="true"></i> <?php echo __('Delete'); ?>
                 </button>
             </div>
@@ -356,7 +356,7 @@
                                                         <span class="fa fa-download"></span> <?php echo __("Allow Download This media"); ?>
                                                         <div class="material-switch pull-right">
                                                             <input id="can_download" type="checkbox" value="0" class="userGroups"/>
-                                                            <label for="can_download" class="label-success"></label>
+                                                            <label for="can_download" class="label-success" style="color: white; background-color: #bbbbbb;"></label>
                                                         </div>
                                                     </li>
                                                     <?php
@@ -369,7 +369,7 @@
                                                         <span class="fa fa-share"></span> <?php echo __("Allow Share This media"); ?>
                                                         <div class="material-switch pull-right">
                                                             <input id="can_share" type="checkbox" value="0" class="userGroups"/>
-                                                            <label for="can_share" class="label-success"></label>
+                                                            <label for="can_share" class="label-success" ></label>
                                                         </div>
                                                     </li>
                                                     <?php
@@ -405,7 +405,7 @@
                                                     <li class="list-group-item non-public">
                                                         <span class="fa fa-lock"></span>
                                                         <?php echo $value['group_name']; ?>
-                                                        <span class="label label-info"><?php echo $value['total_users'] . " " . __("Users linked"); ?></span>
+                                                        <span class="label label-info" ><?php echo $value['total_users'] . " " . __("Users linked"); ?></span>
                                                         <div class="material-switch pull-right">
                                                             <input id="videoGroup<?php echo $value['id']; ?>" type="checkbox" value="<?php echo $value['id']; ?>" class="videoGroups"/>
                                                             <label for="videoGroup<?php echo $value['id']; ?>" class="label-warning"></label>
@@ -577,22 +577,22 @@
     <?php
     if ((User::isAdmin()) && (!$config->getDisable_youtubeupload())) {
         ?>
-        <div class="alert alert-info">
+        <div class="alert alert-info" style="background-color: #bbbbbb;">
             <h1><span class="fab fa-youtube-square"></span> Let us upload your video to YouTube</h1>
             <h2>Before you start</h2>
             <ol>
                 <li>
-                    <a href="<?php echo $global['webSiteRootURL']; ?>siteConfigurations" class="btn btn-info btn-xs">Enable Google Login</a> and get your google ID and Key
+                    <a href="<?php echo $global['webSiteRootURL']; ?>siteConfigurations" class="btn btn-info btn-xs" style="background-color: transparent;">Enable Google Login</a> and get your google ID and Key
                 </li>
                 <li>
                     Go to https://console.developers.google.com
-                    on <a href="https://console.developers.google.com/apis/dashboard" class="btn btn-info btn-xs" target="_blank">dashboard</a> Enable <strong>YouTube Data API v3</strong>
+                    on <a href="https://console.developers.google.com/apis/dashboard" class="btn btn-info btn-xs" style="background-color: transparent;" target="_blank">dashboard</a> Enable <strong>YouTube Data API v3</strong>
                 </li>
                 <li>
-                    In credentials authorized this redirect URIs <code><?php echo $global['webSiteRootURL']; ?>objects/youtubeUpload.json.php</code>
+                    In credentials authorized this redirect URIs <code style="background-color: transparent; color: white;"><?php echo $global['webSiteRootURL']; ?>objects/youtubeUpload.json.php</code>
                 </li>
                 <li>
-                    You can find more help on <a href="https://developers.google.com/youtube/v3/getting-started" class="btn btn-info btn-xs"  target="_blank">https://developers.google.com/youtube/v3/getting-started </a>
+                    You can find more help on <a href="https://developers.google.com/youtube/v3/getting-started" class="btn btn-info btn-xs" style="background-color: transparent;" target="_blank">https://developers.google.com/youtube/v3/getting-started </a>
                 </li>
             </ol>
 
@@ -1703,7 +1703,7 @@ if (User::isAdmin()) {
 
                     var nextIsSet;
                     if (row.next_video == null || row.next_video.length == 0) {
-                        nextIsSet = "<span class='label label-danger'> <?php echo __("Next video NOT set"); ?> </span>";
+                        nextIsSet = "<span class='label label-danger' style='color: black; background-color: white; box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);'> <?php echo __("Next video NOT set"); ?> </span>";
                     } else {
                         var nextVideoTitle;
                         if (row.next_video.title.length > 20) {
@@ -1722,11 +1722,11 @@ if (User::isAdmin()) {
                         if (typeof row.tags[i].type == "undefined") {
                             continue;
                         }
-                        tags += "<span class='label label-primary fix-width'>" + row.tags[i].label + ": </span><span class=\"label label-" + row.tags[i].type + " fix-width\">" + row.tags[i].text + "</span><br>";
+                        tags += "<span class='label label-primary fix-width' style='color: white; background-color: gray;'>" + row.tags[i].label + ": </span><span style='color: white; background-color: #bbbbbb'class=\"label label-" + row.tags[i].type + " fix-width\">" + row.tags[i].text + "</span><br>";
                     }
-                    tags += "<span class='label label-primary fix-width'><?php echo __("Type") . ":"; ?> </span><span class=\"label label-default fix-width\">" + row.type + "</span><br>";
-                    tags += "<span class='label label-primary fix-width'><?php echo __("Views") . ":"; ?> </span><span class=\"label label-default fix-width\">" + row.views_count + " <a href='#' class='viewsDetails' onclick='viewsDetails(" + row.views_count + ", " + row.views_count_25 + "," + row.views_count_50 + "," + row.views_count_75 + "," + row.views_count_100 + ");'>[<i class='fas fa-info-circle'></i> Details]</a></span><br>";
-                    tags += "<span class='label label-primary fix-width'><?php echo __("Format") . ":"; ?> </span>" + row.typeLabels;
+                    tags += "<span class='label label-primary fix-width' style='color: white; background-color: gray;'><?php echo __("Type") . ":"; ?> </span><span class=\"label label-default fix-width\" style='color: white; background-color: #bbbbbb;'>" + row.type + "</span><br>";
+                    tags += "<span class='label label-primary fix-width' style='color: white; background-color: gray;'><?php echo __("Views") . ":"; ?> </span><span class=\"label label-default fix-width\" style='color: white; background-color: #bbbbbb;'>" + row.views_count + " <a href='#' class='viewsDetails' onclick='viewsDetails(" + row.views_count + ", " + row.views_count_25 + "," + row.views_count_50 + "," + row.views_count_75 + "," + row.views_count_100 + ");'>[<i class='fas fa-info-circle'></i> Details]</a></span><br>";
+                    tags += "<span class='label label-primary fix-width' style='color: white; background-color: gray;'><?php echo __("Format") . ":"; ?> </span style='color: white; background-color: #bbbbbb;'>" + row.typeLabels;
                     return tags;
                 },
                 "checkbox": function (column, row) {
